@@ -52,6 +52,11 @@ export default {
       type: Boolean,
       default: false
     },
+    
+    IsImageChanged: {
+      type: Boolean,
+      default: false
+    },
     explanationDisplayed: {
       type: Boolean,
       default: false
@@ -74,23 +79,27 @@ export default {
       {
          elems[i].disabled = false;
       }
-    event.target.disabled = false;
+    event.target.disabled = true;
 
     },
     async explain(index_of_label_to_explain,positive_only_parameter, blob) {
-      //document.write(index_of_label_to_explain + 10);
-      this.waitingForExplanation = true;
+      if (this.IsImageChanged == true ){this.HashList = {};}
+      if(typeof this.HashList[index_of_label_to_explain] !== "undefined" ){
+          this.$emit('explanation-received',  this.HashList[index_of_label_to_explain]);  
+          this.waitingForExplanation = false;
+        } 
+        else{
+          this.waitingForExplanation = true;
+          const form = new FormData();
+          form.append('file', blob);
+          form.append('index_of_label_to_explain', index_of_label_to_explain);
+          form.append('positive_only_parameter', positive_only_parameter);
+          const rawParams = Object.fromEntries(new URLSearchParams(window.location.search.substring(1)))
+          const allParams = unflatten(rawParams)
 
-      const form = new FormData();
-      form.append('file', blob);
-      form.append('index_of_label_to_explain', index_of_label_to_explain);
-      form.append('positive_only_parameter', positive_only_parameter);
-      const rawParams = Object.fromEntries(new URLSearchParams(window.location.search.substring(1)))
-      const allParams = unflatten(rawParams)
-
-      const method = allParams['method'];
-      if (method) {
-        form.append('method', method);
+          const method = allParams['method'];
+          if (method) {
+            form.append('method', method);
       }
 
       const settings = Object
@@ -109,6 +118,7 @@ export default {
       await axios.post(this.backendUrl + '/explain', form)
           .then(response => {
             this.$emit('explanation-received', response.data.image);
+            this.HashList[index_of_label_to_explain] = response.data.image;
             this.waitingForExplanation = false;
           })
           .catch(error => {
@@ -116,13 +126,14 @@ export default {
             this.waitingForExplanation = false;
           })
     }
-  },
+  }},
   data() {
     return {
       explanation: null,
       waitingForExplanation: false,
       backendUrl: process.env.VUE_APP_BACKEND_URL,
-      positive_only: 0
+      positive_only: 0,
+      HashList: {},
     }
   }
 }

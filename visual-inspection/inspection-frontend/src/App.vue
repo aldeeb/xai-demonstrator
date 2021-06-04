@@ -48,6 +48,7 @@
                              v-bind:prediction-ready="currentPrediction"
                              v-bind:Cls_Acc_List = "cls_accuracy_List"
                              v-bind:explanationDisplayed = "expDisplayed"
+                             v-bind:IsImageChanged = "imageChangedFlag"
                              v-bind:Cls_Min_Acc = "cls_MinAccuracy"
                              v-on:explanation-requested="explanationRequested"
                              v-on:explanation-received="explanationReceived"/>
@@ -85,6 +86,7 @@ export default {
       if (!this.waitingForExplanation) {
         this.currentPrediction = false;
         this.currentExplanation = false;
+        this.imageChangedFlag= true;
         this.expDisplayed = false;
         await this.debouncedRequestInspection(canvas);
       }
@@ -110,6 +112,8 @@ export default {
       this.currentExplanation = true;
       this.waitingForExplanation = false;
       this.expDisplayed = true;
+      this.imageChangedFlag= false;
+
     },
     sizeRestrictions({minWidth, minHeight, maxWidth, maxHeight, imageSize}) {
       return {
