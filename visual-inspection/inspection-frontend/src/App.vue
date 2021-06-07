@@ -100,12 +100,11 @@ export default {
       this.cls_accuracy_List =this.$refs.inspector.topPredictions;
       this.cls_MinAccuracy = this.$refs.inspector.MinAccuracy;
     },
-    async explanationRequested(index_of_label_to_explain, positive_only_parameter) {
-         
+    async explanationRequested(index_of_label_to_explain) {
       this.currentExplanation = false;
       this.waitingForExplanation = true;
        
-      this.$refs.cropper.getResult().canvas.toBlob(await this.$refs.explainer.explain.bind(null, index_of_label_to_explain, positive_only_parameter))
+      this.$refs.cropper.getResult().canvas.toBlob(await this.$refs.explainer.explain.bind(null, index_of_label_to_explain))
     },
     explanationReceived(explanationImg) {
       this.explanationImg = explanationImg;

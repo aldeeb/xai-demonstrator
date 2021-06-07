@@ -12,7 +12,7 @@
                           ref="'B'+index"
                           v-show="!waitingForExplanation && predictionReady"
                           v-bind:disabled="!predictionReady"
-                          v-on:click="buttonClicked(index, positive_only, $event)">
+                          v-on:click="buttonClicked(index, $event)">
                     Warum ist das {{item[0]}}?
                     </button>
                   </span>
@@ -21,7 +21,7 @@
                           ref="'B'+index"
                           v-show="!waitingForExplanation && predictionReady"
                           v-bind:disabled="!predictionReady"
-                          v-on:click="buttonClicked(index, positive_only, $event)">
+                          v-on:click="buttonClicked(index, $event)">
                     Warum könnte das auch {{item[0]}} sein?
                     </button>
                   </span>
@@ -72,8 +72,8 @@ export default {
       
   },
   methods: {
-    buttonClicked(index_of_label_to_explain, positive_only_parameter, event) {
-    this.$emit('explanation-requested', index_of_label_to_explain, positive_only_parameter);
+    buttonClicked(index_of_label_to_explain, event) {
+    this.$emit('explanation-requested', index_of_label_to_explain);
     let elems = document.getElementsByTagName('button');
     for(let i = 0; i < elems.length; i++)
       {
@@ -82,7 +82,8 @@ export default {
     event.target.disabled = true;
 
     },
-    async explain(index_of_label_to_explain,positive_only_parameter, blob) {
+    async explain(index_of_label_to_explain, blob) {
+
       if (this.IsImageChanged == true ){this.HashList = {};}
       if(typeof this.HashList[index_of_label_to_explain] !== "undefined" ){
           this.$emit('explanation-received',  this.HashList[index_of_label_to_explain]);  
@@ -92,9 +93,8 @@ export default {
           this.waitingForExplanation = true;
           const form = new FormData();
           form.append('file', blob);
-          form.append('index_of_label_to_explain', index_of_label_to_explain);
-          form.append('positive_only_parameter', positive_only_parameter);
-          const rawParams = Object.fromEntries(new URLSearchParams(window.location.search.substring(1)))
+          //const rawParams = Object.fromEntries(new URLSearchParams(window.location.search.substring(1)))
+            const rawParams= Object.fromEntries(new URLSearchParams('method=lime&explainer.num_samples=20&renderer.positive_only=False&renderer.index_of_label_to_explain='+index_of_label_to_explain));
           const allParams = unflatten(rawParams)
 
           const method = allParams['method'];
@@ -132,7 +132,6 @@ export default {
       explanation: null,
       waitingForExplanation: false,
       backendUrl: process.env.VUE_APP_BACKEND_URL,
-      positive_only: 0,
       HashList: {},
     }
   }

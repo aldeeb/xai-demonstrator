@@ -22,6 +22,7 @@ class RendererConfiguration(BaseModel):
     min_weight: float = 0.0
     positive_only: bool = False
     hide_rest: bool = False
+    index_of_label_to_explain: int = 0
 
     class Config:
         extra = 'forbid'
@@ -38,8 +39,6 @@ class LIMEConfiguration(BaseModel):
 @traced(label="compute_explanation", attributes={"explanation.method": "lime"})
 def lime_explanation(input_img: np.ndarray,
                      model_: tf.keras.models.Model,
-                     index_of_label_to_explain: int,
-                     positive_only_parameter: bool,
                      **settings) -> np.ndarray:
     config = LIMEConfiguration(**settings)
 
@@ -48,27 +47,26 @@ def lime_explanation(input_img: np.ndarray,
                                          num_features=config.explainer.num_features,
                                          num_samples=config.explainer.num_samples)
     #return render_explanation(explanation, index_of_label_to_explain, positive_only_parameter, config.renderer)
-    return render_explanationV2(input_img, explanation, index_of_label_to_explain, positive_only_parameter, config.renderer)
+    return render_explanationV2(input_img, explanation,  config.renderer)
 
 
 @traced
-def render_explanation(explanation: lime_image.ImageExplanation, index_of_label_to_explain : int, positive_only_parameter : bool,
-                       config: RendererConfiguration):
+def render_explanation(explanation: lime_image.ImageExplanation, config: RendererConfiguration):
     image, mask = explanation.get_image_and_mask(
-        explanation.top_labels[index_of_label_to_explain],
-        positive_only= positive_only_parameter,#config.positive_only,
+        explanation.top_labels[config.index_of_label_to_explain],
+        positive_only= config.positive_only,
         negative_only=False,
         num_features=config.num_features,
         min_weight=config.min_weight,
-        hide_rest= True #config.hide_rest
+        hide_rest= config.hide_rest
     )
 
     return mark_boundaries(image / 2 + 0.5, mask)
 @traced
-def render_explanationV2(input_img: np.ndarray, explanation: lime_image.ImageExplanation, index_of_label_to_explain : int,                                            positive_only_parameter: bool, config: RendererConfiguration):
+def render_explanationV2(input_img: np.ndarray, explanation: lime_image.ImageExplanation, config: RendererConfiguration):
     image, mask = explanation.get_image_and_mask(
-        explanation.top_labels[index_of_label_to_explain],
-        positive_only= positive_only_parameter,
+        explanation.top_labels[config.index_of_label_to_explain],
+        positive_only= config.positive_only,
         negative_only=False,
         num_features=config.num_features,
         min_weight=config.min_weight,
