@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="xd-app">
-    <div class="blank-header xd-primary"><h1>XAI-Demonstrator <span class="beta-label">Beta</span></h1></div>
-    <header class="xd-secondary">
-      <h3>Hinterfrage die KI und entdecke Erklärbare Künstliche Intelligenz</h3>
+    <div class="blank-header xd-primary"><h1>XAI-Demonstrator <span class="beta-label"></span></h1></div>
+    <header class="mainImage">
+      <img class="logoaQ" v-bind:src="require('@/assets/alphaQuest_logo_rgbSmall.png')"/>
     </header>
     <main>
       <div id="select">
@@ -38,13 +38,13 @@ export default {
     return {
       useCases: [
         {
-          logo: require('@/assets/sentiment-stars.svg'),
-          title: "Stimmung erkennen",
-          description: "Entdecke, wie die KI die Stimmung in einem Text bestimmt!",
+          logo: require('@/assets/credit-control.png'),
+          title: "Kreditwürdigkeit erkennen",
+          description: "Entdecke, wie die KI die Kreditwürdigkeit anhand der Eingaben bestimmt!",
           route: "/sentiment/"
         },
         {
-          logo: require('@/assets/inspection-eye.svg'),
+          logo: require('@/assets/inspection-eye.png'),
           title: "Gegenstände erkennen",
           description: "Finde heraus, woran die KI Gegenstände auf Bildern erkennt!",
           route: "/inspection/"
@@ -52,17 +52,38 @@ export default {
       ],
       infoText: [
         {
-          headline: "Der XAI-Demonstrator",
+          headline: "Was ist der XAI-Demonstrator?",
           paragraphs: [
-            "Eine KI, die sich dir gegenüber wie ein Team-Mitglied erklärt? Der XAI-Demonstrator zeigt, wie das geht.",
-            "Anhand leicht zugänglicher Beispiele veranschaulicht die App die Möglichkeiten von Explainable AI (XAI). " +
-            "Live und interaktiv erzeugt sie Erklärungen mit modernen Methoden direkt aus der Forschung.",
-            "Damit wird die Vision einer Künstlichen Intelligenz, die nicht länger eine Black Box ist, " +
-            "sondern von ihren Nutzerinnen und Nutzern verstanden und hinterfragt werden kann, Realität."
-          ]
-        }
+            "Der XAI-Demonstrator ist eine App, die die Möglichkeiten von XAI durch interaktive Beispiele veranschaulicht."
+          ]         
+        },
+        {
+          headline: "Was ist XAI?",
+          paragraphs: [
+            "XAI steht für Explainable AI, also erklärende künstliche Intelligenz (KI). Darunter versteht man Methoden, " +
+            "die die Vorhersagen der KI um erklärende Elemente erweitern."
+          ]         
+        },
+        {
+          headline: "Warum XAI?",
+          paragraphs: [
+            "Ein häufiges Hindernis bei der Nutzung von KI-Methoden ist der sogenannte Black Box-Charakter. " +
+            "Dies bedeutet, dass die Nutzer nur das Ergebnis der Vorhersage erhalten, aber keine Informationen " +
+            "oder Hinweise darauf, wie die KI zu dem Ergebnis gelangt ist. XAI ändert dies. " +
+            "XAI liefert die Erklärungen zu den Vorhersagen und verbindet damit die Vorhersagequalität von KI mit " + 
+            "der Nachvollziehbarkeit einer menschlichen Entscheidung."
+          ]         
+        },
+        {
+          headline: "Code Basis",
+          paragraphs: [
+            "Dieser XAI-Demonstrator ist eine Weiterentwicklung eines Projekts der Universität Ulm. "+ 
+            "Der Code der Basis-App ist in folgendem"+
+            " <a href='https://github.com/XAI-Demonstrator/xai-demonstrator'>GitHub-Repositorty</a> öffentlich einsehbar."
+          ]         
+        }            
       ],
-      infoUrl: "https://www.uni-ulm.de/mawi/iba/forschung/forschungsthemen/explainable-artificial-intelligence/xai-demonstrator/",
+      infoUrl: "https://www.alphaquest.de/",
       linkLabel: "Interesse geweckt? Besuche unsere Website! "
     }
   },
@@ -113,6 +134,9 @@ header h1, .blank-header h1 {
   margin: 0;
   font-weight: 400;
   font-size: 25px;
+}
+.mainImage {
+  color: #FFFFFF;
 }
 
 header h3 {
