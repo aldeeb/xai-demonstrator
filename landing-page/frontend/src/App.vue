@@ -2,7 +2,9 @@
   <div id="app" class="xd-app">
     <div class="blank-header xd-primary"><h1>XAI-Demonstrator <span class="beta-label"></span></h1></div>
     <header class="mainImage">
-      <img class="logoaQ" v-bind:src="require('@/assets/alphaQuest_logo_rgbSmall.png')"/>
+      <a href="https://www.alphaquest.de/">
+          <img class="logoaQ" v-bind:src="require('@/assets/alphaQuest_logo_rgbSmall.png')"/>
+      </a>
     </header>
     <main>
       <div id="select">
@@ -17,7 +19,6 @@
           </section>
         </a>
       </div>
-
     </main>
     <FloatingInfoButton
         v-bind:info-text="infoText"
@@ -38,15 +39,9 @@ export default {
     return {
       useCases: [
         {
-          logo: require('@/assets/credit-control.png'),
-          title: "Kreditwürdigkeit erkennen",
-          description: "Entdecke, wie die KI die Kreditwürdigkeit anhand der Eingaben bestimmt!",
-          route: "/sentiment/"
-        },
-        {
           logo: require('@/assets/inspection-eye.png'),
           title: "Gegenstände erkennen",
-          description: "Finde heraus, woran die KI Gegenstände auf Bildern erkennt!",
+          description: "Finden Sie heraus, woran die KI Gegenstände auf Bildern erkennt!",
           route: "/inspection/"
         }
       ],
@@ -67,7 +62,7 @@ export default {
         {
           headline: "Warum XAI?",
           paragraphs: [
-            "Ein häufiges Hindernis bei der Nutzung von KI-Methoden ist der sogenannte Black Box-Charakter. " +
+            "Ein häufiges Hindernis bei der Nutzung von KI-Methoden ist der sogenannte Black-Box-Charakter. " +
             "Dies bedeutet, dass die Nutzer nur das Ergebnis der Vorhersage erhalten, aber keine Informationen " +
             "oder Hinweise darauf, wie die KI zu dem Ergebnis gelangt ist. XAI ändert dies. " +
             "XAI liefert die Erklärungen zu den Vorhersagen und verbindet damit die Vorhersagequalität von KI mit " + 
@@ -77,14 +72,19 @@ export default {
         {
           headline: "Code Basis",
           paragraphs: [
-            "Dieser XAI-Demonstrator ist eine Weiterentwicklung eines Projekts der Universität Ulm. "+ 
+            "Dieser XAI-Demonstrator ist eine Weiterentwicklung eines Projekts der Universität Ulm, das von den folgenden "+ 
+            "<a href='https://github.com/aldeeb/xai-demonstrator/blob/master/CONTRIBUTORS'>Mitwirkenden.</a> "+
+              "ursprünglich entwickelt wurde. "+
+             "Die Nutzung und Weiterentwicklung erfolgen unter den Bedingungen der " +
+             "<a href='https://github.com/aldeeb/xai-demonstrator/blob/master/LICENSE'>Apache 2.0 Lizenz.</a> "+
             "Der Code der Basis-App ist in folgendem"+
-            " <a href='https://github.com/XAI-Demonstrator/xai-demonstrator'>GitHub-Repositorty</a> öffentlich einsehbar."
+            " <a href='https://github.com/aldeeb/xai-demonstrator'>GitHub-Repositorty</a> öffentlich einsehbar."
           ]         
-        }            
+        }   
+          
       ],
       infoUrl: "https://www.alphaquest.de/",
-      linkLabel: "Interesse geweckt? Besuche unsere Website! "
+      linkLabel: "Interesse geweckt? Besuchen Sie unsere Website! "
     }
   },
   created() {
@@ -207,7 +207,7 @@ section img.next {
   text-align: justify;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 450px){
 
   #app {
     overflow: scroll;
@@ -284,12 +284,13 @@ section img.next {
 
   header {
     height: auto;
-    min-height: 280px;
+    min-height: 300px;
     margin-left: 4px;
     margin-right: 4px;
   }
 
   main {
+    min-height: 300px;
     flex: 1;
     padding-top: 0 !important;
     padding-bottom: 0 !important;

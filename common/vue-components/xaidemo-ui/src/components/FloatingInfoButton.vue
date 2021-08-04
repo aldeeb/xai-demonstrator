@@ -78,7 +78,7 @@ export default {
 <style scoped>
 #info-button {
   min-height: 70px;
-  flex-grow: 0;
+  flex-grow: 1;
 }
 
 #info-popup {
@@ -171,7 +171,7 @@ export default {
     left: auto;
     bottom: auto;
     box-shadow: none;
-    height: calc(624px - 42px - 12px);
+    height: calc(624px - 42px - 12px); 
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -190,6 +190,7 @@ export default {
   }
 
   #info-content {
+    min-height: 300px;
     padding: 0 4px 4px;
     overflow: auto;
   }

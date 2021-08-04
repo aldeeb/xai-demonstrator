@@ -6,10 +6,10 @@
     <main>
       <section class="app_heading">
         <div v-if="!expDisplayed">
-          <p>Wähle einen Bildausschnitt und die KI bestimmt den Gegenstand.</p>
+          <p>Wählen Sie einen Bildausschnitt und die KI bestimmt den Gegenstand.</p>
         </div>
         <div v-else>
-            <p>Wähle einen neuen Bildausschnitt und die KI bestimmt weitere Gegenstände.</p>
+            <p>Wählen Sie einen neuen Bildausschnitt und die KI bestimmt weitere Gegenstände.</p>
         </div>
       </section>
       <div id="image-container">
@@ -135,23 +135,24 @@ export default {
         height: 100
       },
       useCaseTitle: "Gegenstände erkennen",
-      infoUrl: "https://xai-demonstrator.github.io/#use-case-ii",
-      infoLinkLabel: "Interesse geweckt? Hier gibt’s mehr Infos!",
+      infoUrl: "https://www.alphaquest.de/kontakt",
+      infoLinkLabel: "Interesse geweckt? Wir beraten Sie gerne zu allen Themen rund um XAI!",
       infoText: [
         {
           headline: "Gegenstände erkennen",
           paragraphs: [
-            "Du interagierst mit einer KI, die einen Gegenstand in einem Bildausschnitt erkennen kann. Aber eine KI ist nie perfekt!",
-            "Durch die Wahl verschiedener Bildausschnitte entdeckst du, für welche Bereiche die KI zuverlässig ist, aber insbesondere auch, wo sie an ihre Grenzen stößt.",
-            "Die automatisch erzeugten Erklärungen helfen dir, zu verstehen, wie die KI vorgeht und warum sie manchmal falsche Schlüsse zieht."
+            "Sie interagieren mit einer KI, die einen Gegenstand in einem Bildausschnitt erkennen kann. Aber eine KI ist nie perfekt!",
+            "Durch die Wahl verschiedener Bildausschnitte entdecken Sie, für welche Bereiche die KI zuverlässig ist, aber insbesondere auch, wo sie an ihre Grenzen stößt.",
+            "Die automatisch erzeugten Erklärungen helfen Ihnen, die Verlässlichkeit der KI-Prognose einzuschätzen und zu verstehen, wie die KI vorgeht und warum sie manchmal falsche Schlüsse zieht."
 
           ]
         }, {
           headline: "Was steckt dahinter?",
           paragraphs: [
-            "Die KI ist ein tiefes neuronales Netz, das 1000 verschiedene Objekte erkennen kann.",
-            "Die Erklärungen werden mit der XAI-Methode <em><abbr>LIME</abbr></em> (<strong>L</strong>ocal <strong>I</strong>nterpretable <strong>M</strong>odel-Agnostic <strong>E</strong>xplanations) generiert. Die Erklärung entspricht einer graphischen Hervorhebung von Bildbereichen, die für die Entscheidung der KI besonders relevant sind.",
-            "<small>Modell: <a href='https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet_v2'>MobileNetV2 for Keras</a>, Erklärungen: <a href='https://github.com/marcotcr/lime'>LIME</a><br />Bild: Melinda Pack (Unsplash), <a href='https://creativecommons.org/publicdomain/zero/1.0/deed.en'>CC0</a> 1.0, via <a href='https://commons.wikimedia.org/wiki/File:Camera_keys_notebook_coffee_(Unsplash).jpg'>Wikimedia Commons</a></small>"
+            "Die KI ist ein tiefes neuronales Netz, das 1000 verschiedene Objekte erkennen kann. ",
+             "Für die textuellen Erklärungen werden Informationen zur geschätzten Sicherheit der Prognose und möglichen Alternativprognosen aus der KI extrahiert und ergänzt.",
+            "Die graphischen Erklärungen werden mit der XAI-Methode  <em><abbr>LIME</abbr></em> (<strong>L</strong>ocal <strong>I</strong>nterpretable <strong>M</strong>odel-Agnostic <strong>E</strong>xplanations) generiert. Die Erklärung entspricht einer graphischen Hervorhebung von Bildbereichen, die für die Entscheidung der KI besonders relevant sind, werden optisch hervorgehoben",
+            "<small>Modell: <a href='https://www.tensorflow.org/api_docs/python/tf/keras/applications/xception'>Xception V1 for Keras</a>, Erklärungen: <a href='https://github.com/marcotcr/lime'>LIME</a><br />Bild: Melinda Pack (Unsplash), <a href='https://creativecommons.org/publicdomain/zero/1.0/deed.en'>CC0</a> 1.0, via <a href='https://commons.wikimedia.org/wiki/File:Camera_keys_notebook_coffee_(Unsplash).jpg'>Wikimedia Commons</a></small>"
           ]
         }],
       backendUrl: process.env.VUE_APP_BACKEND_URL,
@@ -296,7 +297,7 @@ main section {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 90px;
+  min-height: 40px;
   text-align: justify;
   text-justify: inter-word;
 }

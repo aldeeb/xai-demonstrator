@@ -145,7 +145,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 200px;
+  min-height: 220px;
 }
 .center_block_red {
   color: black;

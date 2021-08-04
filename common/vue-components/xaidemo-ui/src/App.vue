@@ -70,6 +70,7 @@ export default {
 }
 
 body {
+  min-height: 300px;
   padding: 0;
   margin: 0;
 }
