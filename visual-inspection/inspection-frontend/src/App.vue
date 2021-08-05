@@ -149,7 +149,7 @@ export default {
         }, {
           headline: "Was steckt dahinter?",
           paragraphs: [
-            "Die KI ist ein tiefes neuronales Netz, das 1000 verschiedene Objekte erkennen kann. ",
+            "Die KI ist ein tiefes neuronales Netz, das 1000 verschiedene Objekte erkennen kann.",
              "Für die textuellen Erklärungen werden Informationen zur geschätzten Sicherheit der Prognose und möglichen Alternativprognosen aus der KI extrahiert und ergänzt.",
             "Die graphischen Erklärungen werden mit der XAI-Methode  <em><abbr>LIME</abbr></em> (<strong>L</strong>ocal <strong>I</strong>nterpretable <strong>M</strong>odel-Agnostic <strong>E</strong>xplanations) generiert. Die Erklärung entspricht einer graphischen Hervorhebung von Bildbereichen, die für die Entscheidung der KI besonders relevant sind, werden optisch hervorgehoben",
             "<small>Modell: <a href='https://www.tensorflow.org/api_docs/python/tf/keras/applications/xception'>Xception V1 for Keras</a>, Erklärungen: <a href='https://github.com/marcotcr/lime'>LIME</a><br />Bild: Melinda Pack (Unsplash), <a href='https://creativecommons.org/publicdomain/zero/1.0/deed.en'>CC0</a> 1.0, via <a href='https://commons.wikimedia.org/wiki/File:Camera_keys_notebook_coffee_(Unsplash).jpg'>Wikimedia Commons</a></small>"
